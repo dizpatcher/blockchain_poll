@@ -1,0 +1,16 @@
+.poll-list {
+    max-width: 30%;
+}
+
+.poll-image {
+    width: 100%;
+    max-height: 200px;
+}
+
+.poll-image img {
+    height: 200px;
+    width: inherit;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
