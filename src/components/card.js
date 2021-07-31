@@ -4,8 +4,15 @@ import '../App.css';
 
 class Card extends React.Component {
 
-    handleVoted = () => {
-        let voted = this.small.poll.voted;
+    constructor(props) {
+        super(props);
+
+        // this.state = {
+        //     voted: ""
+        // }
+    }
+    handleVoted = (voted) => () => {
+        console.log("Voted: ", voted);
         this.props.chooseData(voted);
     }
 
@@ -13,7 +20,7 @@ class Card extends React.Component {
         return (
             <div> {Polls.map((poll) => {
                         return(
-                            <div className="card mb-4">
+                            <div className="card mb-4" onClick={this.handleVoted(poll.voted)}>
                                 <div className="poll-image">
                                     <img src={poll.image}/>
                                 </div>
@@ -23,7 +30,7 @@ class Card extends React.Component {
                                     </p>
                                     <div className="d-flex justify-content-between">
                                         <small className="text-muted">{poll.votes.reduce((a, b) => {return a + b;})} votes</small>
-                                        <small className="badge badge-success" onChange={this.handleVoted}>{poll.voted ? 'voted' : null}</small>
+                                        <small className="badge badge-success" >{poll.voted ? 'voted' : null}</small>
                                     </div>
                                 </div>
                             </div>
