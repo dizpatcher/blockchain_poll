@@ -3,6 +3,12 @@ import Polls from '../polls.json';
 import '../App.css';
 
 class Card extends React.Component {
+
+    handleVoted = () => {
+        let voted = this.small.poll.voted;
+        this.props.chooseData(voted);
+    }
+
     render() {
         return (
             <div> {Polls.map((poll) => {
@@ -17,7 +23,7 @@ class Card extends React.Component {
                                     </p>
                                     <div className="d-flex justify-content-between">
                                         <small className="text-muted">{poll.votes.reduce((a, b) => {return a + b;})} votes</small>
-                                        <small className="badge badge-success">{poll.voted ? 'voted' : null}</small>
+                                        <small className="badge badge-success" onChange={this.handleVoted}>{poll.voted ? 'voted' : null}</small>
                                     </div>
                                 </div>
                             </div>

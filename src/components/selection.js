@@ -1,5 +1,5 @@
 import React from 'react';
-//import Polls from '../polls.json'
+import Polls from '../polls.json'
 class Selection extends React.Component {
 
     constructor() {
@@ -29,7 +29,7 @@ class Selection extends React.Component {
         return (
 
                         <form onSubmit={this.SubmitForm}>
-                            <h3>Poll question title</h3>
+                            <h3>Title question</h3>
 
                             <div className="form-check">
                                 {options.map((opt, index) => {
