@@ -1,5 +1,4 @@
 import React from 'react';
-import Polls from '../polls.json'
 class Selection extends React.Component {
 
     constructor() {

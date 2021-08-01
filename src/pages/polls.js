@@ -11,20 +11,20 @@ class Polls extends React.Component  {
         super(props);
 
         this.state = {
-            voted: "",
+            voted: null,
         }
     }
 
-    chooseData = (voted) => {
+    callbackVoted = (voted) => {
         this.setState({voted: voted});
-        console.log(this.voted)
+        console.log("Parent voted: ", this.state.voted)
     }
 
     render() {
         return(
             <div className="d-flex">
                 <div className="container poll-list">
-                    <Card handleVoted={this.chooseData}/>
+                    <Card pollVoted={this.callbackVoted}/>
                 </div>
                 <div className="container poll-detail">
                     { <ApexChart/> ? this.state.voted : <Selection/> }

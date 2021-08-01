@@ -4,25 +4,18 @@ import '../App.css';
 
 class Card extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-        // this.state = {
-        //     voted: ""
-        // }
-    }
     handleVoted = (voted) => () => {
+        this.props.pollVoted(voted);
         console.log("Voted: ", voted);
-        this.props.chooseData(voted);
     }
 
     render() {
         return (
             <div> {Polls.map((poll) => {
                         return(
-                            <div className="card mb-4" onClick={this.handleVoted(poll.voted)}>
+                            <div key={poll.id} className="card mb-4" onClick={this.handleVoted(poll.voted)}>
                                 <div className="poll-image">
-                                    <img src={poll.image}/>
+                                    <img src={poll.image} alt="Poll thumbnail"/>
                                 </div>
                                 <div className="card-body">
                                     <p className="card-text text-truncate font-weight-bold">
