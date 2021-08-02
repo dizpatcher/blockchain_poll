@@ -25,30 +25,30 @@ class FormPoll extends Component {
         console.log(this.state)
     }
 
-    // handleQuestionChange(event) {
-    //     console.log(this.state.question)
-    //     this.setState({question: event.target.value});
-    // }
-    //
-    // handleImageChange(event) {
-    //     console.log(this.state.image)
-    //     this.setState({image: event.target.value});
-    // }
-    //
-    // handleOp1Change(event) {
-    //     console.log(this.state.op1)
-    //     this.setState({op1: event.target.value});
-    // }
-    //
-    // handleOp2Change(event) {
-    //     console.log(this.state.op2)
-    //     this.setState({op2: event.target.value});
-    // }
-    //
-    // handleOp3Change(event) {
-    //     console.log(this.state.op3)
-    //     this.setState({op3: event.target.value});
-    // }
+    handleQuestionChange(event) {
+        //console.log(this.state.question)
+        this.setState({question: event.target.value});
+    }
+
+    handleImageChange(event) {
+        //console.log(this.state.image)
+        this.setState({image: event.target.value});
+    }
+
+    handleOp1Change(event) {
+        //console.log(this.state.op1)
+        this.setState({op1: event.target.value});
+    }
+
+    handleOp2Change(event) {
+        //console.log(this.state.op2)
+        this.setState({op2: event.target.value});
+    }
+
+    handleOp3Change(event) {
+        //console.log(this.state.op3)
+        this.setState({op3: event.target.value});
+    }
 
     render() {
     return (
@@ -62,8 +62,7 @@ class FormPoll extends Component {
                            type="text"
                            placeholder="Enter the poll question"
                            value={this.state.question}
-                           //onChange={this.handleQuestionChange}
-                    />
+                           onChange={this.handleQuestionChange}/>
                 </div>
             </div>
 
@@ -76,8 +75,7 @@ class FormPoll extends Component {
                            type="text"
                            placeholder="Enter the URL to image"
                            value={this.state.image}
-                           //onChange={this.handleImageChange}
-                    />
+                           onChange={this.handleImageChange}/>
                 </div>
             </div>
 
@@ -90,8 +88,7 @@ class FormPoll extends Component {
                            type="text"
                            placeholder="Enter the first option"
                            value={this.state.op1}
-                           //onChange={this.handleOp1Change}
-                    />
+                           onChange={this.handleOp1Change}/>
                 </div>
             </div>
 
@@ -102,8 +99,7 @@ class FormPoll extends Component {
                            type="text"
                            placeholder="Enter the second option"
                            value={this.state.op2}
-                           //onChange={this.handleOp2Change}
-                    />
+                           onChange={this.handleOp2Change}/>
                 </div>
             </div>
 
@@ -114,8 +110,7 @@ class FormPoll extends Component {
                            type="text"
                            placeholder="Enter the third option"
                            value={this.state.op3}
-                           //onChange={this.handleOp3Change}
-                    />
+                           onChange={this.handleOp3Change}/>
                 </div>
             </div>
 
