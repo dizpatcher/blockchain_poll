@@ -14,3 +14,8 @@
     background-repeat: no-repeat;
     background-position: 50% 50%;
 }
+
+#id {
+    max-width: 450px;
+    max-height: 350px;
+}

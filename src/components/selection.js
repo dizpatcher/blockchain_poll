@@ -1,10 +1,12 @@
 import React from 'react';
+import Polls from '../polls.json';
+
 class Selection extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            status: false
+            id: props.id
         }
         this.ValChange = this.ValChange.bind(this);
         this.SubmitForm = this.SubmitForm.bind(this);
@@ -23,17 +25,18 @@ class Selection extends React.Component {
     }
 
     render() {
-        let options = ["Columbia", "Afganistan", "USSR"];
+        const id = this.state.id
+        const poll = Polls[id]
 
         return (
 
                         <form onSubmit={this.SubmitForm}>
-                            <h3>Title question</h3>
+                            <h3>{poll.question}</h3>
 
                             <div className="form-check">
-                                {options.map((opt, index) => {
+                                {poll.options.map((opt, index) => {
                                     return (
-                                        <div>
+                                        <div key={id}>
                                             <input
                                                 className="form-check-input"
                                                 name="radiobutton"

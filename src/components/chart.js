@@ -1,19 +1,24 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
+import Polls from '../polls.json';
+
+import '../App.css';
 
 class ApexChart extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            id: props.id,
             series: [
                 {
-                data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+                data: Polls[props.id].votes
                 }],
             options: {
                 chart: {
                     type: 'bar',
-                    height: 350
+                    height: 300,
+                    width: 400,
                 },
                 plotOptions: {
                     bar: {
@@ -26,7 +31,7 @@ class ApexChart extends React.Component {
                     show: false
                 },
                 xaxis: {
-                    categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                    categories: Polls[props.id].options,
                 }
             },
 
@@ -37,7 +42,7 @@ class ApexChart extends React.Component {
     render() {
         return(
             <div id="chart">
-                <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height={350}/>
+                <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height={300}/>
             </div>
         )
     }

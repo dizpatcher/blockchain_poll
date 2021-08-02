@@ -11,14 +11,19 @@ class Polls extends React.Component  {
         super(props);
 
         this.state = {
+            active: false,
             voted: null,
+            id: 0
         }
+
+        this.callbackVoted = this.callbackVoted.bind(this);
     }
 
-    callbackVoted = (voted) => {
-        this.setState({voted: voted});
-        console.log("Parent voted: ", this.state.voted)
-    }
+    callbackVoted = (voted, id) => {
+        this.setState({active: true,
+                            voted: voted,
+                            id: id}
+                            );}
 
     render() {
         return(
@@ -27,7 +32,12 @@ class Polls extends React.Component  {
                     <Card pollVoted={this.callbackVoted}/>
                 </div>
                 <div className="container poll-detail">
-                    { <ApexChart/> ? this.state.voted : <Selection/> }
+                    {this.state.active
+                    ? <div>
+                            { this.state.voted ? <ApexChart id={this.state.id}/> : <Selection id={this.state.id}/> }
+                      </div>
+                    : null
+                    }
                 </div>
             </div>)
     }

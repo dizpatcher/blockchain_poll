@@ -4,8 +4,8 @@ import '../App.css';
 
 class Card extends React.Component {
 
-    handleVoted = (voted) => () => {
-        this.props.pollVoted(voted);
+    handleVoted = (voted, id) => () => {
+        this.props.pollVoted(voted, id);
         console.log("Voted: ", voted);
     }
 
@@ -13,7 +13,7 @@ class Card extends React.Component {
         return (
             <div> {Polls.map((poll) => {
                         return(
-                            <div key={poll.id} className="card mb-4" onClick={this.handleVoted(poll.voted)}>
+                            <div key={poll.id} className="card mb-4" onClick={this.handleVoted(poll.voted, poll.id)}>
                                 <div className="poll-image">
                                     <img src={poll.image} alt="Poll thumbnail"/>
                                 </div>
