@@ -7,6 +7,10 @@ import '../App.css'
 
 class Polls extends React.Component  {
 
+    async loadWeb3() {
+
+    }
+
     constructor(props) {
         super(props);
 
