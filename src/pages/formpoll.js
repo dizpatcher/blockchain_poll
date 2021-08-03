@@ -22,6 +22,10 @@ class FormPoll extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        const question = this.state.question
+        const thumb = this.state.image
+        const options = [this.state.op1, this.state.op2, this.state.op3]
+        this.props.createPoll(question, thumb, options)
         console.log(this.state)
     }
 

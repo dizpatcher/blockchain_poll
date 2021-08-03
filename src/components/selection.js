@@ -51,6 +51,7 @@ class Selection extends React.Component {
                                 }
                             </div>
                             <button className="btn btn-secondary mt-3" type="submit" disabled={false === this.state.status}>Submit vote</button>
+                            <p>{this.props.id}</p>
                         </form>
         )
     }
