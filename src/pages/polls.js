@@ -8,7 +8,7 @@ import '../App.css'
 class Polls extends React.Component  {
 
     async loadWeb3() {
-
+        console.log()
     }
 
     constructor(props) {
