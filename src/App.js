@@ -8,7 +8,6 @@ import FormPoll from "./pages/formpoll";
 
 import './App.css';
 import Web3 from "web3";
-import fromAscii from 'web3-utils';
 import Contract from "./blockchain/contract.json";
 
 class App extends React.Component {
@@ -21,6 +20,8 @@ class App extends React.Component {
         }
 
         this.createPoll = this.createPoll.bind(this)
+        this.vote = this.vote.bind(this)
+        this.getPolls = this.getPolls.bind(this)
     }
 
     async componentWillMount() {
@@ -47,7 +48,7 @@ class App extends React.Component {
         console.log(this.state.account)
 
         const platform = new web3.eth.Contract(Contract.abi, Contract.address)
-        this.setState({platform})
+        this.setState({platform: platform})
         this.setState({loading: false})
         console.log(platform)
     }
@@ -57,7 +58,49 @@ class App extends React.Component {
         this.state.platform.methods.createPoll(question, thumb || '', options ).send({from: this.state.account})
     }
 
+    vote(pollId, voteNumber) {
+        this.state.platform.methods.vote(pollId, voteNumber).send({from: this.state.account})
+    }
+
+    getPolls() {
+
+        function normalizeVoter(rawVoter) {
+                return {
+                    id: rawVoter[0],
+                    votedIds: rawVoter[1].map((id) => parseInt(id))
+                }
+        }
+
+        function normalizePoll(rawPoll, voter) {
+            return {
+                id: parseInt(rawPoll[0]),
+                question: rawPoll[1],
+                image: rawPoll[2],
+                options: rawPoll[3].map((opt) => Web3.utils.toAscii(opt)).replace(/\u0000/g, ''),
+                votes: rawPoll[4].map((n) => parseInt(n)),
+                voted: voter.votedIds.length && voter.votedIds.find((votedId) => votedId === parseInt(rawPoll[0]) != undefined),
+            }
+        }
+
+        const polls = []
+        const rawVoter = this.state.platform.methods.getVoter(this.state.account).call()
+        const totalPolls = this.state.platform.methods.getTotalPolls().call()
+
+        const voter = normalizeVoter(rawVoter)
+
+        for (let i=0; i<totalPolls; i++) {
+            const rawPoll = this.state.platform.methods.getPoll(i).call()
+            const poll = normalizePoll(rawPoll, voter)
+            polls.push(poll)
+        }
+
+        return polls
+    }
+
     render() {
+
+        const polls = this.getPolls();
+
         return (
             <div className="App">
                 <BrowserRouter>
@@ -67,6 +110,8 @@ class App extends React.Component {
                         <Route path={'/'} exact render={(props) => (
                             <Polls {...props}
                                    account={this.state.account}
+                                   vote={this.vote}
+                                   polls={polls}
                             />)}
                         />
                         <Route path={'/creation'} exact render={(props) => (

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
-import Polls from '../polls.json';
 
 import '../App.css';
 
@@ -9,10 +8,10 @@ class ApexChart extends React.Component {
         super(props);
 
         this.state = {
-            id: props.id,
+            id: this.props.Polls[props.id],
             series: [
                 {
-                data: Polls[props.id].votes
+                data: this.props.Polls[props.id].votes
                 }],
             options: {
                 chart: {
@@ -31,7 +30,7 @@ class ApexChart extends React.Component {
                     show: false
                 },
                 xaxis: {
-                    categories: Polls[props.id].options,
+                    categories: this.props.Polls[props.id].options,
                 }
             },
 

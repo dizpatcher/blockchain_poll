@@ -31,19 +31,21 @@ class Polls extends React.Component  {
                             );}
 
     render() {
+
         return(
             <div className="d-flex">
                 <div className="container poll-list">
-                    <Card pollVoted={this.callbackVoted}/>
+                    <Card pollVoted={this.callbackVoted} Polls={this.props.polls}/>
                 </div>
                 <div className="container poll-detail">
                     {this.state.active
                     ? <div>
-                            { this.state.voted ? <ApexChart id={this.state.id}/> : <Selection id={this.state.id} active={this.state.active}/> }
+                            { this.state.voted
+                                ? <ApexChart id={this.state.id} Polls={this.props.polls}/>
+                                : <Selection id={this.state.id} active={this.state.active} Polls={this.props.polls} vote={this.props.vote}/> }
                       </div>
                     : null
                     }
-                    <p>Lol</p>
                     <p>{this.state.account}</p>
                     {console.log(Contract.abi, Contract.address)}
                 </div>

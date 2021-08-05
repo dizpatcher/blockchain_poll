@@ -1,5 +1,4 @@
 import React from 'react';
-import Polls from '../polls.json';
 
 class Selection extends React.Component {
 
@@ -21,12 +20,13 @@ class Selection extends React.Component {
 
     SubmitForm = (event) => {
         event.preventDefault();
-        console.log(this.state.value);
+        this.props.vote(this.state.id, this.state.value) // pollId: this.state.id, selectedAnswer: this.state.value
+        console.log("Poll Id: ", this.state.id, ". Selected Answer: ", this.state.value);
     }
 
     render() {
         const id = this.state.id
-        const poll = Polls[id]
+        const poll = this.props.Polls[id]
 
         return (
 
