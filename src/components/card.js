@@ -10,7 +10,9 @@ class Card extends React.Component {
     }
 
     render() {
+
         return (
+
             <div> {Polls.map((poll) => {
                         return(
                             <div key={poll.id} className="card mb-4" onClick={this.handleVoted(poll.voted, poll.id)}>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Polls from '../polls.json';
 
 class Selection extends React.Component {
 
@@ -26,7 +27,7 @@ class Selection extends React.Component {
 
     render() {
         const id = this.state.id
-        const poll = this.props.Polls[id]
+        const poll = Polls[id]
 
         return (
 
@@ -51,7 +52,6 @@ class Selection extends React.Component {
                                 }
                             </div>
                             <button className="btn btn-secondary mt-3" type="submit" disabled={false === this.state.status}>Submit vote</button>
-                            <p>{this.props.id}</p>
                         </form>
         )
     }

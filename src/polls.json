@@ -14,5 +14,13 @@
     "votes": [2,4,6],
     "voted": false,
     "options": ["Apple", "Samsung", "Huawei"]
+  },
+  {
+    "id": 3,
+    "question": "Любимый цвет?",
+    "image": "",
+    "votes": [224,424,653],
+    "voted": true,
+    "options": ["Красный", "Зеленый", "Синий"]
   }
 ]
