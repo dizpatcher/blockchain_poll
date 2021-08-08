@@ -1,12 +1,14 @@
 import React from 'react';
-
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+
 import {Navbar} from "./components/navbar";
+import {Loading} from "./components/loading";
 import {Jumbotron} from "./components/jumbotron";
 import Polls from "./pages/polls";
 import FormPoll from "./pages/formpoll";
 
 import './App.css';
+
 import Web3 from "web3";
 import Contract from "./blockchain/contract.json";
 
@@ -41,7 +43,6 @@ class App extends React.Component {
 
             // getting the Polls
             const totalPolls = await  platform.methods.getTotalPolls().call({from: this.state.account})
-            console.log(totalPolls)
             const rawVoter = await platform.methods.getVoter(this.state.account).call({from: this.state.account})
             const voter = {
                 id: rawVoter[0],
@@ -55,9 +56,9 @@ class App extends React.Component {
                     id: parseInt(rawPoll[0]),
                     question: rawPoll[1],
                     image: rawPoll[2],
-                    options: rawPoll[3].map((opt) => Web3.utils.toAscii(opt)).replace(/\\u0000/g, ''),
+                    options: rawPoll[3].map((opt) => Web3.utils.toAscii(opt)),
                     votes: rawPoll[4].map((n) => parseInt(n)),
-                    voted: voter.votedIds.length && voter.votedIds.find((votedId) => votedId === parseInt(rawPoll[0])),
+                    voted: voter.votedIds.length && voter.votedIds.find((votedId) => votedId === parseInt(rawPoll[0])) !== undefined,
                 }
                 polls.push(poll)
             }
@@ -158,7 +159,7 @@ class App extends React.Component {
     // }
 
     render() {
-        console.log("app.js  Polls: ", this.state)
+
         return (
             <div className="App">
                 <BrowserRouter>
@@ -166,20 +167,19 @@ class App extends React.Component {
                     <Jumbotron/>
                     <Switch>
                         {this.state.loading
-                            ? <Route exact path={'/'}><div id="loader" className="text-center"><p className="text-center">Loading...</p></div></Route>
+                            ? <Route exact path={'/'}><Loading/></Route>
                             : <Route path={'/'} exact render={(props) => (
                                 <Polls {...props}
-                                       account={this.state.account}
                                        vote={this.vote}
                                        loading={this.state.loading}
-                                    //Polls={this.state.polls}
+                                       polls={this.state.polls}
                                 />)}
                             />
                         }
                         <Route path={'/creation'} exact render={(props) => (
                             <FormPoll {...props}
                                       createPoll={this.createPoll}
-                                      account={this.state.account}
+                                      loading={this.state.loading}
                             />)}
                         />
                     </Switch>

@@ -1,12 +1,13 @@
 import React from 'react';
-import Polls from '../polls.json';
+//import Polls from '../polls.json';
+import {Loading} from "../components/loading";
 
 class Selection extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            id: props.id
+            id: props.poll.id
         }
         this.ValChange = this.ValChange.bind(this);
         this.SubmitForm = this.SubmitForm.bind(this);
@@ -22,22 +23,20 @@ class Selection extends React.Component {
     SubmitForm = (event) => {
         event.preventDefault();
         this.props.vote(this.state.id, this.state.value) // pollId: this.state.id, selectedAnswer: this.state.value
-        console.log("Poll Id: ", this.state.id, ". Selected Answer: ", this.state.value);
     }
 
     render() {
-        const id = this.state.id
-        const poll = Polls[id]
 
         return (
 
+                <div>
                         <form onSubmit={this.SubmitForm}>
-                            <h3>{poll.question}</h3>
+                            <h3>{this.props.poll.question}</h3>
 
                             <div className="form-check">
-                                {poll.options.map((opt, index) => {
+                                {this.props.poll.options.map((opt, index) => {
                                     return (
-                                        <div key={id}>
+                                        <div key={index}>
                                             <input
                                                 className="form-check-input"
                                                 name="radiobutton"
@@ -51,8 +50,9 @@ class Selection extends React.Component {
                                     )
                                 }
                             </div>
-                            <button className="btn btn-secondary mt-3" type="submit" disabled={false === this.state.status}>Submit vote</button>
+                            <button className="btn btn-secondary mt-3" type="submit" disabled={false === this.state.status}>Отправить</button>
                         </form>
+                </div>
         )
     }
 }

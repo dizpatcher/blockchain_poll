@@ -1,19 +1,17 @@
 import React from 'react';
-import Polls from '../polls.json';
 import '../App.css';
 
 class Card extends React.Component {
 
     handleVoted = (voted, id) => () => {
         this.props.pollVoted(voted, id);
-        console.log("Voted: ", voted);
     }
 
     render() {
 
         return (
 
-            <div> {Polls.map((poll) => {
+            <div> {this.props.polls.reverse().map((poll) => {
                         return(
                             <div key={poll.id} className="card mb-4" onClick={this.handleVoted(poll.voted, poll.id)}>
                                 <div className="poll-image">
@@ -24,8 +22,8 @@ class Card extends React.Component {
                                         {poll.question}
                                     </p>
                                     <div className="d-flex justify-content-between">
-                                        <small className="text-muted">{poll.votes.reduce((a, b) => {return a + b;})} votes</small>
-                                        <small className="badge badge-success" >{poll.voted ? 'voted' : null}</small>
+                                        <small className="text-muted">{poll.votes.reduce((a, b) => {return a + b;})} голосов</small>
+                                        <small className="badge badge-success" >{poll.voted ? 'участие' : null}</small>
                                     </div>
                                 </div>
                             </div>
