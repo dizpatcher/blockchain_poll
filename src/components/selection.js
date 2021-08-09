@@ -1,6 +1,5 @@
 import React from 'react';
 //import Polls from '../polls.json';
-import {Loading} from "../components/loading";
 
 class Selection extends React.Component {
 
