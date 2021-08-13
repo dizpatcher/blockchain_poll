@@ -59,12 +59,12 @@ class FormPoll extends Component {
         <form className="container col-sm-4" onSubmit={this.handleSubmit}>
             <div className="form-group row">
                 <label className="col-sm-2 col-form-label col-form-label-sm">
-                    Вопрос:
+                    Question:
                 </label>
                 <div className="col-sm-8">
                     <input className="form-control form-control-sm"
                            type="text"
-                           placeholder="Введите вопрос голосования"
+                           placeholder="Enter the poll question"
                            value={this.state.question}
                            onChange={this.handleQuestionChange}/>
                 </div>
@@ -72,12 +72,12 @@ class FormPoll extends Component {
 
             <div className="form-group row">
                 <label className="col-sm-2 col-form-label col-form-label-sm">
-                    Картинка:
+                    Image:
                 </label>
                 <div className="col-sm-8">
                     <input className="form-control form-control-sm"
                            type="text"
-                           placeholder="Введите адрес изображения"
+                           placeholder="Enter URL"
                            value={this.state.image}
                            onChange={this.handleImageChange}/>
                 </div>
@@ -85,12 +85,12 @@ class FormPoll extends Component {
 
             <div className="form-group row">
                 <label className="col-sm-2 col-form-label col-form-label-sm">
-                    Варианты:
+                    Options:
                 </label>
                 <div className="col-sm-8">
                     <input className="form-control form-control-sm"
                            type="text"
-                           placeholder="Введите первую опцию"
+                           placeholder="Enter the first option"
                            value={this.state.op1}
                            onChange={this.handleOp1Change}/>
                 </div>
@@ -101,7 +101,7 @@ class FormPoll extends Component {
                 <div className="col-sm-8">
                     <input className="form-control form-control-sm"
                            type="text"
-                           placeholder="Введите вторую опцию"
+                           placeholder="Enter the second option"
                            value={this.state.op2}
                            onChange={this.handleOp2Change}/>
                 </div>
@@ -112,14 +112,14 @@ class FormPoll extends Component {
                 <div className="col-sm-8">
                     <input className="form-control form-control-sm"
                            type="text"
-                           placeholder="Введите третью опцию"
+                           placeholder="Enter the third option"
                            value={this.state.op3}
                            onChange={this.handleOp3Change}/>
                 </div>
             </div>
 
             <div className="d-flex justify-content-center">
-                <button className="btn btn-sm btn-secondary" type="submit">Отправить</button>
+                <button className="btn btn-sm btn-secondary" type="submit">Submit</button>
             </div>
         </form>
         );

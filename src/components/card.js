@@ -22,8 +22,8 @@ class Card extends React.Component {
                                         {poll.question}
                                     </p>
                                     <div className="d-flex justify-content-between">
-                                        <small className="text-muted">{poll.votes.reduce((a, b) => {return a + b;})} голосов</small>
-                                        <small className="badge badge-success" >{poll.voted ? 'участие' : null}</small>
+                                        <small className="text-muted">{poll.votes.reduce((a, b) => {return a + b;})} votes</small>
+                                        <small className="badge badge-success" >{poll.voted ? 'voted' : null}</small>
                                     </div>
                                 </div>
                             </div>

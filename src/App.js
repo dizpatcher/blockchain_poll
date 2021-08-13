@@ -48,7 +48,7 @@ class App extends React.Component {
 
             this.setState({ loading: false})
         } else {
-            window.alert('Браузер не подддерживает Эфириум. Установите Метамаск')
+            window.alert('The metamask was not found. Make sure that it is installed for the current browser.')
         }
     }
 
@@ -65,7 +65,6 @@ class App extends React.Component {
         this.setState({ loading: true})
 
         this.state.platform.methods.vote(pollId, voteNumber).send({from: this.state.account})
-        console.log("State from vote: ", this.state)
 
         this.setState({ loading: false})
     }
