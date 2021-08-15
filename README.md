@@ -72,3 +72,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 My personal README:
 
+1. Установить Ganache: создать workspace или нажать quick start
+Запомнить адрес, на котором запущена локальная сеть (напр. localhost:8545).
+   
+2. Установить и активировать Metamask - добавить в него аккаунт из Ganache.
+
+3. В Remix задеплоить смарт-контракт выбрал в качестве сети Javascipt VM - должен подтянуться аккаунт из Ganache.
+
+4. В файл contract.json скопировать ABI контракта из Remix и адрес контракта из списка транзакций Ganache.
+
+5. Запустить сервер и удостовериться, что Metamask обнаружен.
